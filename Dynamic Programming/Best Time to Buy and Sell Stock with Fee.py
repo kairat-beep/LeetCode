@@ -4,14 +4,12 @@ class Solution:
     def helper(self):
         buy = -1 * math.inf
         sell = 0
-        latestSells = [0,0]
-        for price in  self.prices:
+        for price in self.prices:
             sell = max(sell, buy + price)
-            latestSells.append(sell)
-            buy = max(buy, latestSells[0] - price)
-            latestSells = latestSells[1:]
+            buy = max(buy, sell - price - self.fee)
         return max(sell,buy)
 
-    def maxProfit(self, prices: List[int]) -> int:
+    def maxProfit(self, prices: List[int], fee: int) -> int:
         self.prices = prices
+        self.fee = fee
         return self.helper()

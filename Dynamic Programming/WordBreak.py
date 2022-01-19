@@ -3,7 +3,7 @@ from typing import List
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         self.longestSubString = 0
-        reachable = [None] * len(s)
+        reachable = [None] * (len(s) + 1)
         reachable[0] = 1
         for i in wordDict:
             self.longestSubString = max(self.longestSubString, len(i))
